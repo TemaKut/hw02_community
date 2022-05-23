@@ -15,5 +15,6 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ('pub_date', 'group')
     empty_value_display = '-пусто-'
 
-admin.site.register(Group) 
+
+admin.site.register(Group)
 admin.site.register(Post, PostAdmin)
