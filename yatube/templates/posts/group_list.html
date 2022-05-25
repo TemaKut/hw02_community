@@ -1,27 +1,27 @@
 {% extends 'base.html' %}
 
-{% block title %}Записи сообщества {{ group }}{% endblock %}
+{% block title %}{{ group }}{% endblock %}
 
 {% block content %}
 <main>
-    <div class="container py-5">
-      <h1>{{ group }}</h1>
+  <div class="container py-5">
+    <h1>{{ group }}</h1>
       {% for posts in posts %}
       <article>
         <ul>
           <li>
-            Автор: {{ posts.author.get_full_name }}
+           Автор: {{ posts.author.get_full_name }}
           </li>
           <li>
-            Дата публикации: {{ posts.pub_date|date:"d E Y" }}
+           Дата публикации: {{ posts.pub_date|date:"d E Y" }}
           </li>
         </ul>      
         <p>
-          {{ posts.text|linebreaks }}
+         {{ posts.text|linebreaks }}
         </p>         
       </article>
       {% if not forloop.last %}<hr>{% endif %}
       {% endfor %} 
-    </div>  
-  </main>
+  </div>  
+</main>
 {% endblock %}

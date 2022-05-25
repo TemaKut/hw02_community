@@ -5,7 +5,7 @@ User = get_user_model()
 
 
 class Group(models.Model):
-    """Модель групп."""
+    """Модель группы."""
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True)
     description = models.TextField()
@@ -15,7 +15,7 @@ class Group(models.Model):
 
 
 class Post(models.Model):
-    """Модель всех постов."""
+    """Модель поста."""
     text = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(
@@ -26,7 +26,7 @@ class Post(models.Model):
     group = models.ForeignKey(
         Group,
         on_delete=models.SET_NULL,
-        related_name='group',
+        related_name='posts',
         blank=True,
         null=True,
     )

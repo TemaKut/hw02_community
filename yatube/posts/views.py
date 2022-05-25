@@ -2,14 +2,13 @@ from django.shortcuts import render, get_object_or_404
 
 from .models import Post, Group
 
-
 MAX_POST_COUNT = 10
 
 
 def index(request):
-    posts_index = Post.objects.order_by('-pub_date')[:MAX_POST_COUNT]
+    posts = Post.objects.order_by('-pub_date')[:MAX_POST_COUNT]
     context = {
-        'posts': posts_index,
+        'posts': posts,
     }
 
     return render(request, "posts/index.html", context)
@@ -17,11 +16,11 @@ def index(request):
 
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
-    posts = (Post.objects.filter(group=group)
-             .order_by('-pub_date')[:MAX_POST_COUNT])
+    posts = group.posts.order_by('-pub_date')[:10]
 
     context_group = {
         'group': group,
         'posts': posts,
     }
+
     return render(request, "posts/group_list.html", context_group)
