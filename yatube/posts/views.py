@@ -16,7 +16,7 @@ def index(request):
 
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
-    posts = group.posts.order_by('-pub_date')[:10]
+    posts = group.posts.order_by('-pub_date')[:MAX_POST_COUNT]
 
     context_group = {
         'group': group,
